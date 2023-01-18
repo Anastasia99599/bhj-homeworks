@@ -1,21 +1,18 @@
-'use strict'
+const timer = document.getElementById("timer");
 
-let timer = document.getElementById('timer');
-let currentTime = timer.textContent;
+const countTime = new Date(timer.textContent * 1000);
 
-setInterval(() => {
-    
-    if (timer.textContent === '00:00:00') {
-        alert('Вы победили в конкурсе!');
-        return;
-    };
+const interval = setInterval(() => {
+    const hh = String(countTime.getHours()).padStart(2, "0");
+    const mm = String(countTime.getMinutes()).padStart(2, "0");
+    const ss = String(countTime.getSeconds()).padStart(2, "0");
+    timer.textContent = `${hh}:${mm}:${ss}`;
 
-    let seconds = currentTime % 60;
-    let minutes = Math.floor(currentTime / 60);
-    let hours = Math.floor(currentTime / 3600);
+    countTime.setSeconds(countTime.getSeconds() - 1);
 
-    timer.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
-
-    currentTime = +currentTime - 1;
-
+    if (countTime.getTime() < 0) {  
+        alert("Вы победили в конкурсе!");
+        // location.assign('https://bookshake.net/get-file/cbda9be6-fe21-47a6-a248-7f9e79d5a287?format=txt');
+        clearInterval(interval);
+    }
 }, 1000);

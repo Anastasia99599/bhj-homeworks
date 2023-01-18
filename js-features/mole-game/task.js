@@ -1,34 +1,29 @@
-'use strict'
+const headShot = document.getElementById("dead");
+const beside = document.getElementById("lost");
+const holes = document.getElementsByClassName("hole");
 
-let deadMole = document.getElementById('dead');
-let lostMole = document.getElementById('lost');
+const restart = (message) => {
+    alert(message);
+    headShot.textContent = 0;
+    beside.textContent = 0;
+}
 
-let getHole = index => document.getElementById(`hole${index}`);
+for (let e of holes) { 
+    e.addEventListener("click", clickHole);
 
-for (let i = 1; i <= 9; i++){
-    
-    let hole = getHole(i);
-
-    hole.onclick = () => {
-
-        if (hole.classList.contains( 'hole_has-mole' )) {
-            deadMole.textContent = +deadMole.textContent + 1;
+    function clickHole() {
+        if (e.classList.contains("hole_has-mole")) {
+            if (headShot.textContent < 9) {
+                headShot.textContent++;
+            } else {
+                restart("Вы враг бобров №1");
+            }
         } else {
-            lostMole.textContent = +lostMole.textContent + 1;
-        };
-
-        if (deadMole.textContent == 10) {
-            alert('Победа!');
-            deadMole.textContent = 0;
-            lostMole.textContent = 0;
-        };
-
-        if (lostMole.textContent == 5) {
-            alert('Вы проиграли!');
-            deadMole.textContent = 0;
-            lostMole.textContent = 0;
-        };
-        
+            if (beside.textContent < 4) {
+                beside.textContent++;
+            } else {
+                restart("Мазила, как так можно?!");
+            }
+        }
     }
- }
- 
+}

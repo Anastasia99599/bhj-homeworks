@@ -1,24 +1,18 @@
-'use strict'
+const cookie = document.getElementById("cookie");
+const cookieCounter = document.getElementById("clicker__counter");
+const cookieSpeed = document.getElementById("clicker__speed");
+let count = 0;
+let startTime = new Date();
 
-let cookieImg = document.getElementById('cookie');
-let clickNumber = document.getElementById('clicker__counter');
-let clickSpeed = document.getElementById('clicker__speed-counter');
+cookie.onclick = function() {
+    count++;
+    cookieCounter.textContent = count;
 
-let start = new Date();
+    count % 2 != 0 ? cookie.width = 250 : cookie.width = 200;
 
-cookieImg.onclick = () => {
+    let endTime = new Date();
+    let speed = 1 / ((endTime - startTime) / 1000);
+    startTime = endTime;
 
-    let clickTime = new Date();
-    let difTime = (clickTime - start) / 1000;
-    
-    clickSpeed.textContent = (1 / difTime).toFixed(2);
-    start = clickTime;
-
-    if (+clickNumber.textContent % 2 == 1) {
-        cookieImg.width -= 20;
-        clickNumber.textContent = +clickNumber.textContent + 1;
-    } else {
-        cookieImg.width += 20;
-        clickNumber.textContent = +clickNumber.textContent + 1;
-    }
+    cookieSpeed.textContent = speed.toFixed(2);
 }

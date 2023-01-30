@@ -17,23 +17,27 @@ class Game {
   }
 
   registerEvents() {
+    document.addEventListener('keypress', (event) => {
+      const keyName = event.key;
+      if (keyName == this.currentSymbol.textContent) {
+        this.success();
+      } else if (keyName != this.currentSymbol.textContent) {
+          this.fail();
+      }      
+    });
     /*
       TODO:
       Написать обработчик события, который откликается
       на каждый введённый символ.
       В случае правильного ввода слова вызываем this.success()
       При неправильном вводе символа - this.fail();
-      DOM-элемент текущего символа находится в свойстве this.currentSymbol.
      */
   }
 
   success() {
-    if(this.currentSymbol.classList.contains("symbol_current")) this.currentSymbol.classList.remove("symbol_current");
     this.currentSymbol.classList.add('symbol_correct');
     this.currentSymbol = this.currentSymbol.nextElementSibling;
-
     if (this.currentSymbol !== null) {
-      this.currentSymbol.classList.add('symbol_current');
       return;
     }
 

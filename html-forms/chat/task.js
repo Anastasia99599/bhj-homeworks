@@ -2,7 +2,13 @@ const widget = document.querySelector('.chat-widget');
 const input = widget.querySelector('.chat-widget__input');
 const messages = document.getElementById('chat-widget__messages');
 const container = widget.querySelector('.chat-widget__messages-container');
-const messagesList = ['Добрый день!', 'Чем могу вам помочь?', 'Остались ли у вас вопросы?', 'Как я к вам могу обращаться?', 'Все операторы в данный момент заняты. Спасибо за понимание!', 'Я перешлю ваш вопрос специалисту. Он вам ответит, когда освободится!', 'Спасибо за обращение!'];
+const messagesList = ['Добрый день!',
+                      'Чем могу вам помочь?',
+                      'Остались ли у вас вопросы?',
+                      'Как я к вам могу обращаться?',
+                      'Все операторы в данный момент заняты. Спасибо за понимание!',
+                      'Я перешлю ваш вопрос специалисту. Он вам ответит, когда освободится!',
+                      'Спасибо за обращение!'];
 
 widget.addEventListener('click', () => {
     widget.classList.add('chat-widget_active');
